@@ -1,0 +1,11 @@
+Model Information:
+* title:	Bedroom with PC
+* source:	https://sketchfab.com/3d-models/bedroom-with-pc-11d531fcfe794271b04c643214f20b11
+* author:	yaelm (https://sketchfab.com/yaelm)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Bedroom with PC" (https://sketchfab.com/3d-models/bedroom-with-pc-11d531fcfe794271b04c643214f20b11) by yaelm (https://sketchfab.com/yaelm) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
