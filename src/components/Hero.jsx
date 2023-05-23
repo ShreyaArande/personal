@@ -9,7 +9,7 @@ const Hero = () => {
   // Bouncing effect for h1 text
   useEffect(() => {
     controls.start({
-      y: [0, -10, 0], // Define the y-axis values for the bouncing effect
+      y: [0, -50, 0], // Define the y-axis values for the bouncing effect
       transition: {
         duration: 1, // Adjust the duration of the animation (in seconds)
         repeat: 1, // Set the animation to repeat indefinitely
@@ -39,7 +39,7 @@ const Hero = () => {
           className={`${styles.paddingX} absolute inset-0 top-[120px] max-w-7xl mx-auto flex flex-row items-start gap-5`}
         >
           <div className="flex flex-col justify-center items-center mt-5">
-            <div className="w-5 h-5 rounded-full bg-[#915eff]" />
+            <div className="w-5 h-5 rounded-full bg-[#5c0e9c]" />
             <div className="w-1 sm:h-80 h-40 violet-gradient" />
           </div>
           <div>
@@ -48,7 +48,7 @@ const Hero = () => {
               animate={controls}
             >
               <h1 className={`${styles.heroHeadText} text-white`}>
-                Hi, I am <span className="text-[#915eff]">Shreya</span>
+                Hi, I am <span className="text-[#5c0e9c]">Shreya</span>
               </h1>
             </motion.p>
 
