@@ -1,11 +1,9 @@
 /* eslint-disable react/no-unknown-property */
 import { OrbitControls, Preload, useGLTF } from "@react-three/drei";
-import { motion, useAnimation } from "framer-motion";
 import { Canvas } from "@react-three/fiber";
-import { styles } from "../../styles";
-import React, { Suspense, useEffect } from "react";
+import { motion, useAnimation } from "framer-motion";
+import { Suspense, useEffect } from "react";
 import CanvasLoader from "../Loader";
-import FBXModel from "./Fbx";
 
 // eslint-disable-next-line react/prop-types
 const Computers = () => {
@@ -45,34 +43,31 @@ const ComputersCanvas = () => {
   }, [controls]);
   return (
     <>
-    <motion.p
-      animate={controls}
-      style={{
-        height: "100vh",
-      }}
-    >
-      <Canvas
-        frameloop="demand"
-        shadows
-        dpr={[1, 2]}
-        camera={{ position: [20, 3, 60], fov: 10 }}
-        gl={{ preserveDrawingBuffer: true }}
+      <motion.p
+        animate={controls}
+        style={{
+          height: "100vh",
+        }}
       >
-        <Suspense fallback={<CanvasLoader />}>
-          <OrbitControls
-            enableZoom={false}
-            maxPolarAngle={Math.PI / 2}
-            minPolarAngle={Math.PI / 2}
-          />
-          <Computers />
-        </Suspense>
+        <Canvas
+          frameloop="demand"
+          shadows
+          dpr={[1, 2]}
+          camera={{ position: [20, 3, 60], fov: 10 }}
+          gl={{ preserveDrawingBuffer: true }}
+        >
+          <Suspense fallback={<CanvasLoader />}>
+            <OrbitControls
+              enableZoom={false}
+              maxPolarAngle={Math.PI / 2}
+              minPolarAngle={Math.PI / 2}
+            />
+            <Computers />
+          </Suspense>
 
-        <Preload all />
-    <FBXModel/>
-
-      </Canvas>
-
-    </motion.p>
+          <Preload all />
+        </Canvas>
+      </motion.p>
     </>
   );
 };

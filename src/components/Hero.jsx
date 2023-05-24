@@ -2,6 +2,8 @@ import { motion, useAnimation } from "framer-motion";
 import { styles } from "../styles";
 import { useEffect, useState } from "react";
 import { ComputersCanvas } from "./canvas";
+import FBXModel from "./canvas/Fbx";
+import { Canvas } from "@react-three/fiber";
 
 const Hero = () => {
   const controls = useAnimation();
@@ -36,8 +38,20 @@ const Hero = () => {
     <>
       <section className="relative w-full h-screen">
         <div
-          className={`${styles.paddingX} absolute inset-0 top-[120px] max-w-7xl mx-auto flex flex-row items-start gap-5`}
+          className={`${styles.paddingX} absolute inset-0 top-[120px] mx-auto flex flex-row items-start gap-5`}
         >
+          <div style={{ width:'10rem', height:'50vh' }}>
+          <Canvas
+            frameloop="demand"
+            shadows
+            dpr={[1, 2]}
+            camera={{ position: [20, 3, 60], fov: 10 }}
+            gl={{ preserveDrawingBuffer: true }}
+          >
+            <FBXModel />
+          </Canvas>
+          </div>
+
           <div className="flex flex-col justify-center items-center mt-5">
             <div className="w-5 h-5 rounded-full bg-[#5c0e9c]" />
             <div className="w-1 sm:h-80 h-40 violet-gradient" />
@@ -52,9 +66,7 @@ const Hero = () => {
               </h1>
             </motion.p>
 
-            <motion.p
-              className={`${styles.heroSubText} mt-2 text-white-100`}
-            >
+            <motion.p className={`${styles.heroSubText} mt-2 text-white-100`}>
               {displayText}
             </motion.p>
           </div>
