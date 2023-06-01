@@ -2,12 +2,27 @@
 import { OrbitControls, Preload, useGLTF } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { motion, useAnimation } from "framer-motion";
-import { Suspense, useEffect } from "react";
+import { Suspense, useEffect, useState } from "react";
 import CanvasLoader from "../Loader";
 
 // eslint-disable-next-line react/prop-types
 const Computers = () => {
   const computer = useGLTF("./desktop_pc/scene.gltf");
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(max-width: 500px)");
+    setIsMobile(mediaQuery.matches);
+
+    const handleMediaQueryChange = (event) => {
+      setIsMobile(event.matches);
+    };
+
+    mediaQuery.addEventListener("change", handleMediaQueryChange);
+    return () => {
+      mediaQuery.removeEventListener("change", handleMediaQueryChange);
+    };
+  }, []);
 
   return (
     <mesh>
@@ -23,28 +38,27 @@ const Computers = () => {
       <pointLight intensity={1} />
       <primitive
         object={computer.scene}
-        scale={3}
-        position={[0, -5.5, -1.5]}
+        scale={isMobile ? 2 : 3}
+        position={isMobile ? [0, -4.5, -1.5] : [0, -4.0, -1.5]}
         // rotation={[-0.01, -0.2, -0.1]}
       />
     </mesh>
   );
 };
-const ComputersCanvas = () => {
-  const controls = useAnimation();
-  useEffect(() => {
-    controls.start({
-      y: [0, -150, 0], // Define the y-axis values for the bouncing effect
-      transition: {
-        duration: 1, // Adjust the duration of the animation (in seconds)
-        repeat: 1, // Set the animation to repeat indefinitely
-      },
-    });
-  }, [controls]);
+const ComputersCanvas = ({ isMobile }) => {
   return (
     <>
       <motion.p
-        animate={controls}
+        animate={{
+          scale: [1, 2, 2, 1, 1],
+        }}
+        transition={{
+          duration: 2,
+          ease: "easeInOut",
+          times: [0, 0.2, 0.5, 0.8, 1],
+          repeat: 0,
+          repeatDelay: 1,
+        }}
         style={{
           height: "100vh",
         }}
@@ -62,7 +76,7 @@ const ComputersCanvas = () => {
               maxPolarAngle={Math.PI / 2}
               minPolarAngle={Math.PI / 2}
             />
-            <Computers />
+            <Computers isMobile={isMobile} />
           </Suspense>
 
           <Preload all />

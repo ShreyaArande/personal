@@ -11,7 +11,7 @@ const FBXModel = () => {
   useEffect(() => {
     const mixer = new THREE.AnimationMixer(fbxRef.current);
 
-    const action = mixer.clipAction(fbx.animations[0]); // Assuming the first animation clip in the FBX file
+    const action = mixer.clipAction(fbx.animations[1]);
     action.play();
 
     const updateAnimation = (delta) => {
